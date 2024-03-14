@@ -16,9 +16,11 @@ void main () {
   String? value1;
   String value2 = "not null";
 
+
   value1 ??= "null이여서 값이 할당됨";
   value2 ??= 'null이 아니어서 값이 할당되지 앖음';
 
-
+  print(value1);
+  print(value2);
 
 }
