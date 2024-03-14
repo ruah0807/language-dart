@@ -21,7 +21,10 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           appBar: AppBar(
-            title: Text('AppBar'),
+            title: Container(
+              color: Colors.amber,
+              child: Center(child: Text('AppBar')),
+            ),
             backgroundColor: Colors.green,
           ),
           body: Text('Body입니다'),
