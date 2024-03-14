@@ -10,46 +10,69 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'App 타이틀',
-        //앱의 전반적인 테마를 설정한다.
-        theme: ThemeData(
-          //텍스트의 style을 미리 설정하고 호출해 사용가능
-          textTheme: TextTheme(
-            bodyText1: TextStyle(fontWeight: FontWeight.bold),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('AppBar'),
+          backgroundColor: Colors.green,
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              //세로로 쌓기
+              children: [
+                Row(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Text(
+                          'hello',
+                          style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber),
+                        ),
+                        Container(
+                          width: 100,
+                          height: 100,
+                          color: Colors.purple,
+                          child: Text('컨테이너'),
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(20),
+                          padding: EdgeInsets.only(bottom: 20),
+                        ),
+                      ],
+                    ),
+                    Icon(
+                      Icons.home,
+                      color: Colors.amber,
+                      size: 100,
+                    ),
+                  ],
+                ),
+                Image.asset(
+                  'assets/images/cat.jpg',
+                ),
+                Image.network(
+                    'https://gratisography.com/wp-content/uploads/2023/10/gratisography-cool-cat-800x525.jpg'),
+                Image.network(
+                    'https://gratisography.com/wp-content/uploads/2023/05/gratisography-colorful-cat-free-stock-photo-800x525.jpg'),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Input'),
+                  // 입력폼 (text)에 값이 변경될 경우
+                  onChanged: (text) {
+                    print(text);
+                  },
+                  //엔터를 눌렀을 경우 작동한다.
+                  onSubmitted: (text) {
+                    print("enter를 눌렀습니다 입력값 : $text");
+                  },
+                )
+              ],
+            ),
           ),
         ),
-        home: Scaffold(
-          appBar: AppBar(
-            title: Container(
-              color: Colors.amber,
-              child: Center(child: Text('AppBar')),
-            ),
-            backgroundColor: Colors.green,
-          ),
-          body: Text('Body입니다'),
-          bottomNavigationBar: BottomNavigationBar(
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.add_shopping_cart),
-                label: 'business',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.school_rounded),
-                label: 'school',
-              ),
-            ],
-          ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.access_alarm),
-            onPressed: () => {
-              print('hello'),
-            },
-          ),
-        ));
+      ),
+    );
   }
 }
