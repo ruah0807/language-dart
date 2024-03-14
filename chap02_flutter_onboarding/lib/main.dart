@@ -26,22 +26,22 @@ class TestScreen extends StatelessWidget {
     Introduction(
       title: 'Present',
       subTitle: '코린이라 잘 모르는게 투성이',
-      imageUrl: 'assets/images/1.png',
+      imageUrl: 'assets/images/present.png',
     ),
     Introduction(
       title: 'After study',
       subTitle: '현실에 아직 안 부딪혀봐서 일단 신난 루아',
-      imageUrl: 'assets/images/2.png',
+      imageUrl: 'assets/images/after.png',
     ),
     Introduction(
       title: 'After 10 years',
       subTitle: '코딩을 엄청 잘하게 되어서 에러도 척척 해결해 시간이 남아도는 루아',
-      imageUrl: 'assets/images/3.png',
+      imageUrl: 'assets/images/later.png',
     ),
     Introduction(
       title: '2 years ago',
       subTitle: 'Browse the menu and order directly from the application',
-      imageUrl: 'assets/images/4.png',
+      imageUrl: 'assets/images/profile.jpeg',
     ),
   ];
 
