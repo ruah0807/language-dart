@@ -41,17 +41,44 @@ class MyApp extends StatelessWidget {
 class TestScreen extends StatelessWidget {
   final List<Introduction> list = [
     Introduction(
-      title: 'Present',
-      subTitle: '코린이라 잘 모르는게 투성이',
+      title: 'Present, It still works',
+      //textStyle
+      titleTextStyle: TextStyle(
+        color: Colors.amber,
+        fontSize: 30,
+        fontFamily: "IBMPlexSansKR",
+        fontWeight: FontWeight.w100,
+      ),
+      subTitle:
+          "I don't know what I study. please help me. I need your help for me",
+      subTitleTextStyle: TextStyle(
+          color: Colors.green,
+          fontSize: 20,
+          fontFamily: "IBMPlexSansKR",
+          fontWeight: FontWeight.bold),
       imageUrl: 'assets/images/present.png',
     ),
     Introduction(
-      title: 'After study',
+      title: '수료 후',
+      //textStyle
+      titleTextStyle: TextStyle(
+        color: Colors.amber,
+        fontSize: 30,
+        fontFamily: "GasoekOne",
+        // fontWeight: FontWeight.w100,
+      ),
       subTitle: '현실에 아직 안 부딪혀봐서 일단 신남',
       imageUrl: 'assets/images/after.png',
     ),
     Introduction(
       title: 'After 10 years',
+      //textStyle
+      titleTextStyle: TextStyle(
+        color: Colors.amber,
+        fontSize: 30,
+        fontFamily: "BlackHanSans",
+        // fontWeight: FontWeight.w100,
+      ),
       subTitle: '코딩을 엄청 잘하게 되어서 에러도 척척 해결해 시간이 남아돌게 되는......',
       imageUrl: 'assets/images/later.png',
     ),
