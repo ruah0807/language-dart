@@ -47,7 +47,7 @@ class TestScreen extends StatelessWidget {
         color: Colors.amber,
         fontSize: 30,
         fontFamily: "IBMPlexSansKR",
-        fontWeight: FontWeight.w100,
+        fontWeight: FontWeight.w400,
       ),
       subTitle:
           "I don't know what I study. please help me. I need your help for me",
@@ -55,7 +55,7 @@ class TestScreen extends StatelessWidget {
           color: Colors.green,
           fontSize: 20,
           fontFamily: "IBMPlexSansKR",
-          fontWeight: FontWeight.bold),
+          fontWeight: FontWeight.w100),
       imageUrl: 'assets/images/present.png',
     ),
     Introduction(
