@@ -10,7 +10,6 @@ class CatService extends ChangeNotifier {
   // CatService 생성자
   CatService(this.prefs) {
     getRandomCatImages();
-
     //저장된 값이 없을 때
     favoriteCatImages = prefs.getStringList('isFavorite') ?? [];
   }
