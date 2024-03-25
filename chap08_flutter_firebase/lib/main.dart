@@ -1,4 +1,5 @@
 import 'package:chap08_flutter_firebase/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +27,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //유저는 변하지 않으니 final로 선언해준다.
+    //다시 껐다 켜도 로그인이 되어있으니 홈페이지로 바로 들어가게 함.
+
+    final user = context.read<AuthService>().currentUser();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: user == null ? LoginPage() : HomePage(),
     );
   }
 }
@@ -49,6 +54,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Consumer<AuthService>(
       builder: (context, authService, child) {
+        //로그인한 유저 객체 가져오기
+        User? user = authService.currentUser();
         return Scaffold(
           appBar: AppBar(
             title: Text('로그인'),
@@ -60,8 +67,9 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Center(
                   child: Text(
-                    '로그인 해주세요',
-                    style: TextStyle(fontSize: 25),
+                    //로그인 한 유저 정보보기
+                    user == null ? '로그인 해주세요' : '${user.email}님 안녕하세요',
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
                 TextField(
@@ -70,15 +78,36 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextField(
                   controller: passwordController,
+                  //비밀번호 안보이게 하기
+                  obscureText: true,
                   decoration: InputDecoration(hintText: '비밀번호'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    //로그인 성공시 homepage로 이동
-                    // pushReplacement : 뒤로 가기 기록이 사라짐.
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (_) => HomePage()),
+                    authService.signIn(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      onSuccess: () {
+                        //성공 메세지 띄우기
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('로그인성공'),
+                          ),
+                        );
+                        //로그인 성공시 homepage로 이동
+                        // pushReplacement : 뒤로 가기 기록이 사라짐.
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => HomePage()),
+                        );
+                      },
+                      onError: (err) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(err),
+                          ),
+                        );
+                      },
                     );
                   },
                   child: Text(
@@ -150,6 +179,8 @@ class _HomePageState extends State<HomePage> {
           TextButton(
             onPressed: () {
               //로그아웃 버튼을 눌렀을 때 로그인 페이지로 이동
+
+              context.read<AuthService>().signOut();
 
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (_) => LoginPage()));
